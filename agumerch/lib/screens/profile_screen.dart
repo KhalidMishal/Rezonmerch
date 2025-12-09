@@ -4,7 +4,10 @@ import '../state/app_state.dart';
 import 'signup_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+  const ProfileScreen({super.key, required this.themeMode, required this.onThemeModeChanged});
+
+  final ThemeMode themeMode;
+  final ValueChanged<ThemeMode> onThemeModeChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -72,6 +75,17 @@ class ProfileScreen extends StatelessWidget {
           const SizedBox(height: 24),
           Text('Account settings', style: Theme.of(context).textTheme.titleMedium),
           const SizedBox(height: 12),
+          // Appearance toggle (separate ListTile so users can toggle quickly)
+          ListTile(
+            leading: const Icon(Icons.dark_mode_outlined),
+            title: const Text('Dark mode'),
+            trailing: Switch.adaptive(
+              value: themeMode == ThemeMode.dark,
+              onChanged: (bool v) => onThemeModeChanged(v ? ThemeMode.dark : ThemeMode.light),
+            ),
+            onTap: () => onThemeModeChanged(themeMode == ThemeMode.dark ? ThemeMode.light : ThemeMode.dark),
+          ),
+          const SizedBox(height: 8),
           _SettingsCard(
             items: const <_SettingItem>[
               _SettingItem(icon: Icons.badge_outlined, title: 'Student ID verification'),

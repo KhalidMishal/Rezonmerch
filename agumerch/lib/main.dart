@@ -25,6 +25,7 @@ class _AGUMerchAppState extends State<AGUMerchApp> {
   final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
 
   bool _signedInAsGuest = false; // <-- new: control showing welcome screen
+  ThemeMode _themeMode = ThemeMode.system;
 
   void _openProduct(Product product) {
     _navigatorKey.currentState?.push(
@@ -34,16 +35,26 @@ class _AGUMerchAppState extends State<AGUMerchApp> {
     );
   }
 
+  void _updateThemeMode(ThemeMode mode) {
+    setState(() => _themeMode = mode);
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       navigatorKey: _navigatorKey,
       title: 'AGU Merch',
       debugShowCheckedModeBanner: false,
+      themeMode: _themeMode,
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF10628A)),
         scaffoldBackgroundColor: const Color(0xFFF5F6F8),
+      ),
+      darkTheme: ThemeData.dark().copyWith(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF10628A), brightness: Brightness.dark),
+        scaffoldBackgroundColor: const Color(0xFF0B0B0D),
       ),
       builder: (BuildContext context, Widget? child) {
         return AppStateScope(
@@ -55,6 +66,8 @@ class _AGUMerchAppState extends State<AGUMerchApp> {
       home: _signedInAsGuest
           ? _MainShell(
               onProductSelected: _openProduct,
+              themeMode: _themeMode,
+              onThemeModeChanged: _updateThemeMode,
             )
           : WelcomeScreen(
               onSignInAsGuest: () {
@@ -66,15 +79,19 @@ class _AGUMerchAppState extends State<AGUMerchApp> {
               onRegister: () {
                 // non-functional placeholder
               },
+              themeMode: _themeMode,
+              onThemeModeChanged: _updateThemeMode,
             ),
     );
   }
 }
 
 class _MainShell extends StatefulWidget {
-  const _MainShell({required this.onProductSelected});
+  const _MainShell({required this.onProductSelected, required this.themeMode, required this.onThemeModeChanged});
 
   final ValueChanged<Product> onProductSelected;
+  final ThemeMode themeMode;
+  final ValueChanged<ThemeMode> onThemeModeChanged;
 
   @override
   State<_MainShell> createState() => _MainShellState();
@@ -102,7 +119,10 @@ class _MainShellState extends State<_MainShell> {
           ),
           FavoritesScreen(onProductSelected: widget.onProductSelected),
           CartScreen(onExplore: () => _setIndex(1)),
-          const ProfileScreen(),
+          ProfileScreen(
+            themeMode: widget.themeMode,
+            onThemeModeChanged: widget.onThemeModeChanged,
+          ),
         ],
       ),
       bottomNavigationBar: NavigationBar(
