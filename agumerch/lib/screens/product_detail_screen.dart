@@ -273,7 +273,9 @@ class _GalleryImage extends StatelessWidget {
                   Colors.black.withValues(alpha: 0.4),
                   BlendMode.darken,
                 ),
-                child: Image.network(imageUrl, fit: BoxFit.cover),
+                child: imageUrl.startsWith('http')
+                    ? Image.network(imageUrl, fit: BoxFit.cover)
+                    : Image.asset(imageUrl, fit: BoxFit.cover),
               ),
             ),
           ),
@@ -289,11 +291,17 @@ class _GalleryImage extends StatelessWidget {
                   child: Stack(
                     fit: StackFit.expand,
                     children: <Widget>[
-                      Image.network(
-                        imageUrl,
-                        fit: BoxFit.contain,
-                        alignment: Alignment.center,
-                      ),
+                      imageUrl.startsWith('http')
+                          ? Image.network(
+                              imageUrl,
+                              fit: BoxFit.contain,
+                              alignment: Alignment.center,
+                            )
+                          : Image.asset(
+                              imageUrl,
+                              fit: BoxFit.contain,
+                              alignment: Alignment.center,
+                            ),
                       Container(
                         decoration: const BoxDecoration(
                           gradient: LinearGradient(
@@ -572,6 +580,9 @@ List<String> _galleryForProduct(Product product) {
 }
 
 String _imageUrlWithSeed(String url, int seed) {
+  if (!url.startsWith('http')) {
+    return url;
+  }
   final String separator = url.contains('?') ? '&' : '?';
   return '$url${separator}sig=${seed + 1}';
 }

@@ -33,7 +33,9 @@ class ProductCard extends StatelessWidget {
                 AspectRatio(
                   aspectRatio: 1,
                   child: Ink.image(
-                    image: NetworkImage(product.imageUrl),
+                    image: product.imageUrl.startsWith('http')
+                        ? NetworkImage(product.imageUrl) as ImageProvider
+                        : AssetImage(product.imageUrl),
                     fit: BoxFit.cover,
                   ),
                 ),

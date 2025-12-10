@@ -38,13 +38,22 @@ class WelcomeScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 alignment: Alignment.center,
-                child: const Text('AGU', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                child: const Text(
+                  'AGU',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
               const SizedBox(height: 24),
               // use theme text styles so colors adapt in dark mode
               Text(
                 'Welcome to AGÜ Store',
-                style: textTheme.titleLarge?.copyWith(fontSize: 22, fontWeight: FontWeight.w700),
+                style: textTheme.titleLarge?.copyWith(
+                  fontSize: 22,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
               const SizedBox(height: 12),
               Text(
@@ -63,7 +72,9 @@ class WelcomeScreen extends StatelessWidget {
                   const SizedBox(width: 12),
                   Switch.adaptive(
                     value: themeMode == ThemeMode.dark,
-                    onChanged: (bool v) => onThemeModeChanged(v ? ThemeMode.dark : ThemeMode.light),
+                    onChanged: (bool v) => onThemeModeChanged(
+                      v ? ThemeMode.dark : ThemeMode.light,
+                    ),
                   ),
                 ],
               ),
@@ -108,9 +119,14 @@ class WelcomeScreen extends StatelessWidget {
                   ),
                   style: OutlinedButton.styleFrom(
                     side: BorderSide(color: theme.dividerColor),
-                    padding: const EdgeInsets.symmetric(vertical: 14.0, horizontal: 16.0),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 14.0,
+                      horizontal: 16.0,
+                    ),
                     minimumSize: const Size.fromHeight(48),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
                     backgroundColor: theme.colorScheme.surface,
                   ),
                 ),
@@ -121,7 +137,10 @@ class WelcomeScreen extends StatelessWidget {
                 width: double.infinity,
                 child: OutlinedButton.icon(
                   onPressed: onSignInAsGuest,
-                  icon: Icon(Icons.person_outline, color: theme.iconTheme.color),
+                  icon: Icon(
+                    Icons.person_outline,
+                    color: theme.iconTheme.color,
+                  ),
                   label: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 14.0),
                     child: Row(
@@ -140,9 +159,14 @@ class WelcomeScreen extends StatelessWidget {
                   ),
                   style: OutlinedButton.styleFrom(
                     side: BorderSide(color: theme.dividerColor),
-                    padding: const EdgeInsets.symmetric(vertical: 14.0, horizontal: 16.0),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 14.0,
+                      horizontal: 16.0,
+                    ),
                     minimumSize: const Size.fromHeight(48),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
                     backgroundColor: theme.colorScheme.surface,
                   ),
                 ),
@@ -152,16 +176,24 @@ class WelcomeScreen extends StatelessWidget {
                 width: double.infinity,
                 child: OutlinedButton(
                   onPressed: onRegister,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 14.0),
-                    child: Text('Register', style: textTheme.bodyMedium?.copyWith(fontSize: 15)),
-                  ),
                   style: OutlinedButton.styleFrom(
                     side: BorderSide(color: theme.dividerColor),
-                    padding: const EdgeInsets.symmetric(vertical: 14.0, horizontal: 16.0),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 14.0,
+                      horizontal: 16.0,
+                    ),
                     minimumSize: const Size.fromHeight(48),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
                     backgroundColor: theme.colorScheme.surface,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 14.0),
+                    child: Text(
+                      'Register',
+                      style: textTheme.bodyMedium?.copyWith(fontSize: 15),
+                    ),
                   ),
                 ),
               ),

@@ -1,35 +1,57 @@
 [
   {
-    "name": "AGU Classic Hoodie",
-    "photoUrl": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80",
-    "price": 48,
-    "category": "Apparel",
-    "description": "Premium cotton hoodie with embroidered AGU crest.",
-    "colors": ["Midnight Blue", "Charcoal"],
-    "sizes": ["S", "M", "L", "XL"],
-    "inventory": 32,
-    "badges": ["Top Seller"]
+    "name": "AGU Espresso Set",
+    "photoUrl": "assets/images/coffee_cups.png",
+    "price": 35,
+    "category": "Home",
+    "description": "Elegant white ceramic espresso cups with matching saucers, featuring the signature AGU logo in red.",
+    "colors": ["White"],
+    "sizes": ["Standard"],
+    "inventory": 40,
+    "badges": ["Premium"]
   },
   {
-    "name": "Statement Tee",
-    "photoUrl": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80",
-    "price": 24,
+    "name": "Varsity Cap Collection",
+    "photoUrl": "assets/images/caps.png",
+    "price": 28,
     "category": "Apparel",
-    "description": "Soft-touch shirt with AGU typography.",
-    "colors": ["Arctic White", "Sunset Coral"],
-    "sizes": ["M", "L", "XL"],
+    "description": "Classic baseball caps with embroidered AGU logo. Adjustable strap for perfect fit.",
+    "colors": ["Black", "Red", "White"],
+    "sizes": ["One Size"],
+    "inventory": 100,
+    "badges": ["Bestseller"]
+  },
+  {
+    "name": "Thermal Steel Bottle",
+    "photoUrl": "assets/images/metal_bottles.png",
+    "price": 25,
+    "category": "Accessories",
+    "description": "Double-walled insulated stainless steel bottle to keep your drinks hot or cold for hours.",
+    "colors": ["Metallic Red", "Silver", "Matte Black"],
+    "sizes": ["500ml"],
+    "inventory": 85,
+    "badges": ["Eco-Friendly"]
+  },
+  {
+    "name": "Soft-Touch Glass Bottle",
+    "photoUrl": "assets/images/glass_bottles.png",
+    "price": 22,
+    "category": "Accessories",
+    "description": "Glass water bottle with a protective soft-touch sleeve. Stylish and sustainable.",
+    "colors": ["Pastel Pink", "Mint Green", "White", "Sky Blue"],
+    "sizes": ["450ml"],
     "inventory": 60,
     "badges": ["New"]
   },
   {
-    "name": "Hydro Sport Bottle",
-    "photoUrl": "https://images.unsplash.com/photo-1514996937319-344454492b37?auto=format&fit=crop&w=800&q=80",
-    "price": 18,
-    "category": "Accessories",
-    "description": "Insulated, laser-etched crest bottle.",
-    "colors": ["Matte Black"],
-    "sizes": ["600ml"],
-    "inventory": 75,
-    "badges": ["Eco"]
+    "name": "Classic Ceramic Mug",
+    "photoUrl": "assets/images/mugs.png",
+    "price": 15,
+    "category": "Home",
+    "description": "Your daily coffee companion. Durable ceramic mug with a comfortable handle.",
+    "colors": ["Glossy Black", "White/Red Handle"],
+    "sizes": ["350ml"],
+    "inventory": 120,
+    "badges": ["Classic"]
   }
 ]

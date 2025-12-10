@@ -30,7 +30,8 @@ class _AGUMerchAppState extends State<AGUMerchApp> {
   void _openProduct(Product product) {
     _navigatorKey.currentState?.push(
       MaterialPageRoute<void>(
-        builder: (BuildContext context) => ProductDetailScreen(product: product),
+        builder: (BuildContext context) =>
+            ProductDetailScreen(product: product),
       ),
     );
   }
@@ -52,8 +53,10 @@ class _AGUMerchAppState extends State<AGUMerchApp> {
         scaffoldBackgroundColor: const Color(0xFFF5F6F8),
       ),
       darkTheme: ThemeData.dark().copyWith(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF10628A), brightness: Brightness.dark),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFF10628A),
+          brightness: Brightness.dark,
+        ),
         scaffoldBackgroundColor: const Color(0xFF0B0B0D),
       ),
       builder: (BuildContext context, Widget? child) {
@@ -87,7 +90,11 @@ class _AGUMerchAppState extends State<AGUMerchApp> {
 }
 
 class _MainShell extends StatefulWidget {
-  const _MainShell({required this.onProductSelected, required this.themeMode, required this.onThemeModeChanged});
+  const _MainShell({
+    required this.onProductSelected,
+    required this.themeMode,
+    required this.onThemeModeChanged,
+  });
 
   final ValueChanged<Product> onProductSelected;
   final ThemeMode themeMode;
@@ -114,9 +121,7 @@ class _MainShellState extends State<_MainShell> {
             onProductSelected: widget.onProductSelected,
             onSeeAll: () => _setIndex(1),
           ),
-          CatalogScreen(
-            onProductSelected: widget.onProductSelected,
-          ),
+          CatalogScreen(onProductSelected: widget.onProductSelected),
           FavoritesScreen(onProductSelected: widget.onProductSelected),
           CartScreen(onExplore: () => _setIndex(1)),
           ProfileScreen(
@@ -129,11 +134,31 @@ class _MainShellState extends State<_MainShell> {
         selectedIndex: _index,
         onDestinationSelected: _setIndex,
         destinations: const <NavigationDestination>[
-          NavigationDestination(icon: Icon(Icons.home_outlined), selectedIcon: Icon(Icons.home), label: 'Home'),
-          NavigationDestination(icon: Icon(Icons.grid_view_outlined), selectedIcon: Icon(Icons.grid_view), label: 'Catalog'),
-          NavigationDestination(icon: Icon(Icons.favorite_outline), selectedIcon: Icon(Icons.favorite), label: 'Favorites'),
-          NavigationDestination(icon: Icon(Icons.shopping_bag_outlined), selectedIcon: Icon(Icons.shopping_bag), label: 'Cart'),
-          NavigationDestination(icon: Icon(Icons.person_outline), selectedIcon: Icon(Icons.person), label: 'Profile'),
+          NavigationDestination(
+            icon: Icon(Icons.home_outlined),
+            selectedIcon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.grid_view_outlined),
+            selectedIcon: Icon(Icons.grid_view),
+            label: 'Catalog',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.favorite_outline),
+            selectedIcon: Icon(Icons.favorite),
+            label: 'Favorites',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.shopping_bag_outlined),
+            selectedIcon: Icon(Icons.shopping_bag),
+            label: 'Cart',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.person_outline),
+            selectedIcon: Icon(Icons.person),
+            label: 'Profile',
+          ),
         ],
       ),
     );
