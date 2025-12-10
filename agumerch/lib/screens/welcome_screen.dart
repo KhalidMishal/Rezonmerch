@@ -30,21 +30,12 @@ class WelcomeScreen extends StatelessWidget {
             children: [
               const SizedBox(height: 48),
               // simple logo block
-              Container(
-                width: 72,
-                height: 72,
-                decoration: BoxDecoration(
-                  color: const Color(0xFF163E35),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                alignment: Alignment.center,
-                child: const Text(
-                  'AGU',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+              Image.asset(
+                theme.brightness == Brightness.dark
+                    ? 'assets/branding/agu_logo_dark.png'
+                    : 'assets/branding/agu_logo_light.png',
+                width: 150,
+                fit: BoxFit.contain,
               ),
               const SizedBox(height: 24),
               // use theme text styles so colors adapt in dark mode

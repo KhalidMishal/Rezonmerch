@@ -36,8 +36,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   @override
   Widget build(BuildContext context) {
     final AppState state = AppStateScope.of(context);
-    final List<Product> availableProducts =
-        state.products.isNotEmpty ? state.products : <Product>[widget.product];
+    final List<Product> availableProducts = state.products.isNotEmpty
+        ? state.products
+        : <Product>[widget.product];
     final List<Product> curatedFeed = _curatedFeed(availableProducts);
 
     return Scaffold(
@@ -176,9 +177,8 @@ class _ProductReelState extends State<_ProductReel> {
             scrollDirection: Axis.horizontal,
             itemCount: gallery.length,
             onPageChanged: (int index) => setState(() => _galleryIndex = index),
-            itemBuilder: (_, int index) => _GalleryImage(
-              imageUrl: gallery[index],
-            ),
+            itemBuilder: (_, int index) =>
+                _GalleryImage(imageUrl: gallery[index]),
           ),
           Positioned.fill(
             child: IgnorePointer(
@@ -245,16 +245,16 @@ class _ProductReelState extends State<_ProductReel> {
           duration: const Duration(seconds: 1),
           behavior: SnackBarBehavior.floating,
           margin: const EdgeInsets.all(24),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
         ),
       );
   }
 }
 
 class _GalleryImage extends StatelessWidget {
-  const _GalleryImage({
-    required this.imageUrl,
-  });
+  const _GalleryImage({required this.imageUrl});
 
   final String imageUrl;
 
@@ -386,7 +386,9 @@ class _RailButton extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.black54,
                 borderRadius: BorderRadius.circular(28),
-                border: isActive ? Border.all(color: Colors.pinkAccent, width: 2) : null,
+                border: isActive
+                    ? Border.all(color: Colors.redAccent, width: 2)
+                    : null,
               ),
               child: Icon(icon, color: Colors.white, size: 28),
             ),
@@ -440,15 +442,18 @@ class _ProductInfoPanel extends StatelessWidget {
           children: <Widget>[
             Text(
               product.name,
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineSmall
-                  ?.copyWith(color: Colors.white, fontWeight: FontWeight.w700),
+              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                color: Colors.white,
+                fontWeight: FontWeight.w700,
+              ),
             ),
             const SizedBox(height: 4),
             Text(
               '${product.category} • \$${product.price.toStringAsFixed(2)}',
-              style: const TextStyle(color: Colors.white70, fontWeight: FontWeight.w600),
+              style: const TextStyle(
+                color: Colors.white70,
+                fontWeight: FontWeight.w600,
+              ),
             ),
             const SizedBox(height: 8),
             Row(
@@ -484,19 +489,30 @@ class _ProductInfoPanel extends StatelessWidget {
                           if (hasDescription && (hasColors || hasSizes))
                             const SizedBox(height: 12),
                           if (hasColors)
-                            _PillScroller(label: 'Colors', values: product.colors),
-                          if (hasColors && hasSizes)
-                            const SizedBox(height: 8),
+                            _PillScroller(
+                              label: 'Colors',
+                              values: product.colors,
+                            ),
+                          if (hasColors && hasSizes) const SizedBox(height: 8),
                           if (hasSizes)
-                            _PillScroller(label: 'Sizes', values: product.sizes),
+                            _PillScroller(
+                              label: 'Sizes',
+                              values: product.sizes,
+                            ),
                           const SizedBox(height: 12),
-                          _GalleryIndicator(length: galleryLength, activeIndex: galleryIndex),
+                          _GalleryIndicator(
+                            length: galleryLength,
+                            activeIndex: galleryIndex,
+                          ),
                         ],
                       ),
                     )
                   : Padding(
                       padding: const EdgeInsets.only(top: 12),
-                      child: _GalleryIndicator(length: galleryLength, activeIndex: galleryIndex),
+                      child: _GalleryIndicator(
+                        length: galleryLength,
+                        activeIndex: galleryIndex,
+                      ),
                     ),
             ),
           ],
@@ -517,7 +533,13 @@ class _PillScroller extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text(label, style: const TextStyle(color: Colors.white70, fontWeight: FontWeight.w600)),
+        Text(
+          label,
+          style: const TextStyle(
+            color: Colors.white70,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
         const SizedBox(height: 8),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
@@ -526,12 +548,18 @@ class _PillScroller extends StatelessWidget {
                 .map(
                   (String value) => Container(
                     margin: const EdgeInsets.only(right: 8),
-                    padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 14,
+                      vertical: 6,
+                    ),
                     decoration: BoxDecoration(
                       color: Colors.white12,
                       borderRadius: BorderRadius.circular(16),
                     ),
-                    child: Text(value, style: const TextStyle(color: Colors.white)),
+                    child: Text(
+                      value,
+                      style: const TextStyle(color: Colors.white),
+                    ),
                   ),
                 )
                 .toList(),

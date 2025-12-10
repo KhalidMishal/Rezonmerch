@@ -25,7 +25,7 @@ class _AGUMerchAppState extends State<AGUMerchApp> {
   final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
 
   bool _signedInAsGuest = false; // <-- new: control showing welcome screen
-  ThemeMode _themeMode = ThemeMode.system;
+  ThemeMode _themeMode = ThemeMode.light;
 
   void _openProduct(Product product) {
     _navigatorKey.currentState?.push(
@@ -49,12 +49,12 @@ class _AGUMerchAppState extends State<AGUMerchApp> {
       themeMode: _themeMode,
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF10628A)),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFFD32F2F)),
         scaffoldBackgroundColor: const Color(0xFFF5F6F8),
       ),
       darkTheme: ThemeData.dark().copyWith(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF10628A),
+          seedColor: const Color(0xFFD32F2F),
           brightness: Brightness.dark,
         ),
         scaffoldBackgroundColor: const Color(0xFF0B0B0D),
