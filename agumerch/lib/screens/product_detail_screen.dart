@@ -39,9 +39,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     final List<Product> availableProducts = state.products.isNotEmpty
         ? state.products
         : <Product>[widget.product];
-    final List<Product> availableProducts = state.products.isNotEmpty
-        ? state.products
-        : <Product>[widget.product];
     final List<Product> curatedFeed = _curatedFeed(availableProducts);
 
     return Scaffold(
@@ -182,8 +179,6 @@ class _ProductReelState extends State<_ProductReel> {
             onPageChanged: (int index) => setState(() => _galleryIndex = index),
             itemBuilder: (_, int index) =>
                 _GalleryImage(imageUrl: gallery[index]),
-            itemBuilder: (_, int index) =>
-                _GalleryImage(imageUrl: gallery[index]),
           ),
           Positioned.fill(
             child: IgnorePointer(
@@ -253,16 +248,12 @@ class _ProductReelState extends State<_ProductReel> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
           ),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16),
-          ),
         ),
       );
   }
 }
 
 class _GalleryImage extends StatelessWidget {
-  const _GalleryImage({required this.imageUrl});
   const _GalleryImage({required this.imageUrl});
 
   final String imageUrl;
@@ -455,10 +446,6 @@ class _ProductInfoPanel extends StatelessWidget {
                 color: Colors.white,
                 fontWeight: FontWeight.w700,
               ),
-              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                color: Colors.white,
-                fontWeight: FontWeight.w700,
-              ),
             ),
             const SizedBox(height: 4),
             Text(
@@ -507,22 +494,12 @@ class _ProductInfoPanel extends StatelessWidget {
                               values: product.colors,
                             ),
                           if (hasColors && hasSizes) const SizedBox(height: 8),
-                          _PillScroller(
-                            label: 'Colors',
-                            values: product.colors,
-                          ),
-                          if (hasColors && hasSizes) const SizedBox(height: 8),
                           if (hasSizes)
                             _PillScroller(
                               label: 'Sizes',
                               values: product.sizes,
                             ),
-                          _PillScroller(label: 'Sizes', values: product.sizes),
                           const SizedBox(height: 12),
-                          _GalleryIndicator(
-                            length: galleryLength,
-                            activeIndex: galleryIndex,
-                          ),
                           _GalleryIndicator(
                             length: galleryLength,
                             activeIndex: galleryIndex,
@@ -532,10 +509,6 @@ class _ProductInfoPanel extends StatelessWidget {
                     )
                   : Padding(
                       padding: const EdgeInsets.only(top: 12),
-                      child: _GalleryIndicator(
-                        length: galleryLength,
-                        activeIndex: galleryIndex,
-                      ),
                       child: _GalleryIndicator(
                         length: galleryLength,
                         activeIndex: galleryIndex,
@@ -567,13 +540,6 @@ class _PillScroller extends StatelessWidget {
             fontWeight: FontWeight.w600,
           ),
         ),
-        Text(
-          label,
-          style: const TextStyle(
-            color: Colors.white70,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
         const SizedBox(height: 8),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
@@ -586,17 +552,9 @@ class _PillScroller extends StatelessWidget {
                       horizontal: 14,
                       vertical: 6,
                     ),
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 14,
-                      vertical: 6,
-                    ),
                     decoration: BoxDecoration(
                       color: Colors.white12,
                       borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: Text(
-                      value,
-                      style: const TextStyle(color: Colors.white),
                     ),
                     child: Text(
                       value,
