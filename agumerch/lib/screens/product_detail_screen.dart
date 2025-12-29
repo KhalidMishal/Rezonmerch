@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import '../models/product.dart';
 import '../state/app_state.dart';
+import 'three_d_viewer_screen.dart';
 
 class ProductDetailScreen extends StatefulWidget {
   const ProductDetailScreen({super.key, required this.product});
@@ -203,6 +204,7 @@ class _ProductReelState extends State<_ProductReel> {
               isFavorite: widget.isFavorite,
               onFavoriteToggle: _handleLike,
               onAddToCart: _handleAddToCart,
+              onView3D: () => _handleView3D(context),
               price: widget.product.price,
             ),
           ),
@@ -250,6 +252,15 @@ class _ProductReelState extends State<_ProductReel> {
           ),
         ),
       );
+  }
+
+  void _handleView3D(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (BuildContext context) =>
+            ThreeDViewerScreen(product: widget.product),
+      ),
+    );
   }
 }
 
@@ -328,12 +339,14 @@ class _ActionRail extends StatelessWidget {
     required this.isFavorite,
     required this.onFavoriteToggle,
     required this.onAddToCart,
+    required this.onView3D,
     required this.price,
   });
 
   final bool isFavorite;
   final VoidCallback onFavoriteToggle;
   final VoidCallback onAddToCart;
+  final VoidCallback onView3D;
   final double price;
 
   @override
@@ -347,6 +360,8 @@ class _ActionRail extends StatelessWidget {
           onTap: onFavoriteToggle,
           isActive: isFavorite,
         ),
+        const SizedBox(height: 18),
+        _RailButton(icon: Icons.view_in_ar, label: '3D', onTap: onView3D),
         const SizedBox(height: 18),
         _RailButton(
           icon: Icons.shopping_bag_outlined,
