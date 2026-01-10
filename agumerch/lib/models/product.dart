@@ -6,6 +6,7 @@ class Product {
     required this.category,
     required this.imageUrl,
     required this.description,
+    this.threeDModelUrl,
     this.colors = const [],
     this.sizes = const [],
     this.inventory = 0,
@@ -18,6 +19,7 @@ class Product {
   final String category;
   final String imageUrl;
   final String description;
+  final String? threeDModelUrl;
   final List<String> colors;
   final List<String> sizes;
   final int inventory;
@@ -28,6 +30,7 @@ class Product {
     double? price,
     String? category,
     String? imageUrl,
+    String? threeDModelUrl,
     String? description,
     List<String>? colors,
     List<String>? sizes,
@@ -40,6 +43,7 @@ class Product {
       price: price ?? this.price,
       category: category ?? this.category,
       imageUrl: imageUrl ?? this.imageUrl,
+      threeDModelUrl: threeDModelUrl ?? this.threeDModelUrl,
       description: description ?? this.description,
       colors: colors ?? this.colors,
       sizes: sizes ?? this.sizes,

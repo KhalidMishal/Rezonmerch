@@ -2,16 +2,19 @@
     {
         "name": "AGU Classic Hoodie",
         "photoUrl": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80",
+        "threeDModelUrl": "https://modelviewer.dev/shared-assets/models/Astronaut.glb",
         "price": 48.0
     },
     {
         "name": "Statement Tee",
         "photoUrl": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80",
+        "threeDModelUrl": "https://modelviewer.dev/shared-assets/models/Astronaut.glb",
         "price": 24.0
     },
     {
         "name": "Hydro Sport Bottle",
         "photoUrl": "https://images.unsplash.com/photo-1514996937319-344454492b37?auto=format&fit=crop&w=800&q=80",
+        "threeDModelUrl": "https://modelviewer.dev/shared-assets/models/Astronaut.glb",
         "price": 18.0
     },
     {

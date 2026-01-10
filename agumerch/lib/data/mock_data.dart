@@ -10,6 +10,7 @@ final List<Product> mockProducts = [
         'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80',
     description:
         'Premium cotton hoodie with embroidered Rezon crest. Designed for everyday comfort and campus pride.',
+    threeDModelUrl: 'https://modelviewer.dev/shared-assets/models/Astronaut.glb',
     colors: ['Midnight Blue', 'Charcoal Gray', 'Campus Green'],
     sizes: ['XS', 'S', 'M', 'L', 'XL'],
     inventory: 32,

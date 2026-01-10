@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import '../models/product.dart';
 import '../state/app_state.dart';
+import 'three_d_view_screen.dart';
 
 class ProductDetailScreen extends StatefulWidget {
   const ProductDetailScreen({super.key, required this.product});
@@ -204,6 +205,8 @@ class _ProductReelState extends State<_ProductReel> {
               onFavoriteToggle: _handleLike,
               onAddToCart: _handleAddToCart,
               price: widget.product.price,
+              onView3D:
+                  widget.product.threeDModelUrl != null ? _handleView3D : null,
             ),
           ),
           Positioned(
@@ -219,6 +222,17 @@ class _ProductReelState extends State<_ProductReel> {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  void _handleView3D() {
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (BuildContext context) => ThreeDViewScreen(
+          productName: widget.product.name,
+          modelUrl: widget.product.threeDModelUrl!,
+        ),
       ),
     );
   }
@@ -329,12 +343,14 @@ class _ActionRail extends StatelessWidget {
     required this.onFavoriteToggle,
     required this.onAddToCart,
     required this.price,
+    this.onView3D,
   });
 
   final bool isFavorite;
   final VoidCallback onFavoriteToggle;
   final VoidCallback onAddToCart;
   final double price;
+  final VoidCallback? onView3D;
 
   @override
   Widget build(BuildContext context) {
@@ -348,6 +364,14 @@ class _ActionRail extends StatelessWidget {
           isActive: isFavorite,
         ),
         const SizedBox(height: 18),
+        if (onView3D != null) ...<Widget>[
+          _RailButton(
+            icon: Icons.view_in_ar,
+            label: '3D',
+            onTap: onView3D!,
+          ),
+          const SizedBox(height: 18),
+        ],
         _RailButton(
           icon: Icons.shopping_bag_outlined,
           label: '₺${price.toStringAsFixed(0)}',

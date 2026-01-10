@@ -2,6 +2,7 @@
   {
     "name": "AGU Espresso Set",
     "photoUrl": "assets/images/coffee_cups.png",
+    "threeDModelUrl": "https://modelviewer.dev/shared-assets/models/Astronaut.glb",
     "price": 475,
     "category": "Home",
     "description": "Elegant white ceramic espresso cups with matching saucers, featuring the signature AGU logo in red.",
@@ -19,6 +20,7 @@
   {
     "name": "Varsity Cap Collection",
     "photoUrl": "assets/images/caps.png",
+    "threeDModelUrl": "https://modelviewer.dev/shared-assets/models/Astronaut.glb",
     "price": 290,
     "category": "Apparel",
     "description": "Classic baseball caps with embroidered AGU logo. Adjustable strap for perfect fit.",
@@ -38,6 +40,7 @@
   {
     "name": "Thermal Steel Bottle",
     "photoUrl": "assets/images/metal_bottles.png",
+    "threeDModelUrl": "https://modelviewer.dev/shared-assets/models/Astronaut.glb",
     "price": 360,
     "category": "Accessories",
     "description": "Double-walled insulated stainless steel bottle to keep your drinks hot or cold for hours.",
@@ -57,6 +60,7 @@
   {
     "name": "Soft-Touch Glass Bottle",
     "photoUrl": "assets/images/glass_bottles.png",
+    "threeDModelUrl": "https://modelviewer.dev/shared-assets/models/Astronaut.glb",
     "price": 310,
     "category": "Accessories",
     "description": "Glass water bottle with a protective soft-touch sleeve. Stylish and sustainable.",
@@ -77,6 +81,7 @@
   {
     "name": "Classic Ceramic Mug",
     "photoUrl": "assets/images/mugs.png",
+    "threeDModelUrl": "https://modelviewer.dev/shared-assets/models/Astronaut.glb",
     "price": 210,
     "category": "Home",
     "description": "Your daily coffee companion. Durable ceramic mug with a comfortable handle.",
