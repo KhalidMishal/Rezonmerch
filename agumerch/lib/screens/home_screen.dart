@@ -102,7 +102,7 @@ class _HeroBanner extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            'Rezon Merch Hub',
+            'Rezon',
             style: Theme.of(context)
                 .textTheme
                 .headlineMedium
@@ -110,7 +110,7 @@ class _HeroBanner extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            'Explore campus-driven fashion, accessories, and gear tailored for students, alumni, and fans.',
+            'Elevated streetwear and accessories, designed for everyday style',
             style: Theme.of(context)
                 .textTheme
                 .bodyMedium

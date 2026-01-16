@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "529248480364",
+    "project_id": "rezon-merch",
+    "storage_bucket": "rezon-merch.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:529248480364:android:d6cf7d520d1960ce34bc49",
+        "android_client_info": {
+          "package_name": "com.example.agumerch"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPMEV_9QW9RyFv8TBn2qj4LJl9s47Rw24"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

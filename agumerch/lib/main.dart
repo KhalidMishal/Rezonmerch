@@ -8,8 +8,14 @@ import 'screens/home_screen.dart';
 import 'screens/product_detail_screen.dart';
 import 'screens/profile_screen.dart';
 import 'state/app_state.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const AGUMerchApp());
 }
 
@@ -24,7 +30,7 @@ class _AGUMerchAppState extends State<AGUMerchApp> {
   final AppState _state = AppState();
   final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
 
-  bool _signedInAsGuest = false; // <-- new: control showing welcome screen
+  bool _signedInAsGuest = false;
   ThemeMode _themeMode = ThemeMode.light;
 
   void _openProduct(Product product) {
@@ -49,12 +55,10 @@ class _AGUMerchAppState extends State<AGUMerchApp> {
       themeMode: _themeMode,
       theme: ThemeData(
         useMaterial3: true,
-        // neutral grey seed for a minimalist grey/black/white brand
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF6E6E6E)),
         scaffoldBackgroundColor: const Color(0xFFF7F7F7),
       ),
       darkTheme: ThemeData.dark().copyWith(
-        // use the same grey seed but generate a dark color scheme
         colorScheme: ColorScheme.fromSeed(
           seedColor: const Color(0xFF6E6E6E),
           brightness: Brightness.dark,
@@ -67,26 +71,27 @@ class _AGUMerchAppState extends State<AGUMerchApp> {
           child: child ?? const SizedBox.shrink(),
         );
       },
-      // show welcome screen until user taps "Sign in as guest"
-      home: _signedInAsGuest
-          ? _MainShell(
-              onProductSelected: _openProduct,
-              themeMode: _themeMode,
-              onThemeModeChanged: _updateThemeMode,
-            )
-          : WelcomeScreen(
-              onSignInAsGuest: () {
-                setState(() => _signedInAsGuest = true);
-              },
-              onSignInWithGoogle: () {
-                // non-functional placeholder
-              },
-              onRegister: () {
-                // non-functional placeholder
-              },
-              themeMode: _themeMode,
-              onThemeModeChanged: _updateThemeMode,
-            ),
+
+      // 🔥 AUTH-AWARE ROUTING
+      home: Builder(
+        builder: (BuildContext context) {
+          final appState = AppStateScope.of(context);
+
+          return _signedInAsGuest || appState.isLoggedIn
+              ? _MainShell(
+                  onProductSelected: _openProduct,
+                  themeMode: _themeMode,
+                  onThemeModeChanged: _updateThemeMode,
+                )
+              : WelcomeScreen(
+                  onSignInAsGuest: () {
+                    setState(() => _signedInAsGuest = true);
+                  },
+                  themeMode: _themeMode,
+                  onThemeModeChanged: _updateThemeMode,
+                );
+        },
+      ),
     );
   }
 }

@@ -1,196 +1,206 @@
 import 'package:flutter/material.dart';
+import '../state/app_state.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-class WelcomeScreen extends StatelessWidget {
+class WelcomeScreen extends StatefulWidget {
   final VoidCallback onSignInAsGuest;
-  final VoidCallback onSignInWithGoogle;
-  final VoidCallback onRegister;
   final ThemeMode themeMode;
   final ValueChanged<ThemeMode> onThemeModeChanged;
 
   const WelcomeScreen({
     super.key,
     required this.onSignInAsGuest,
-    required this.onSignInWithGoogle,
-    required this.onRegister,
     required this.themeMode,
     required this.onThemeModeChanged,
   });
 
   @override
+  State<WelcomeScreen> createState() => _WelcomeScreenState();
+}
+
+class _WelcomeScreenState extends State<WelcomeScreen> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  bool _loading = false;
+  String? _errorMessage;
+
+  @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
-    final TextTheme textTheme = theme.textTheme;
+    final theme = Theme.of(context);
+    final textTheme = theme.textTheme;
+    // ignore: unused_local_variable
+    final appState = AppStateScope.of(context);
 
     return Scaffold(
-      // removed hardcoded backgroundColor so app theme (light/dark) is used
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 28.0),
-          child: Column(
-            children: [
-              const SizedBox(height: 48),
-              // simple logo block
-              Image.asset(
-                theme.brightness == Brightness.dark
-                    ? 'assets/branding/agu_logo_dark.png'
-                    : 'assets/branding/agu_logo_light.png',
-                width: 150,
-                fit: BoxFit.contain,
-              ),
-              const SizedBox(height: 24),
-              // use theme text styles so colors adapt in dark mode
-              Text(
-                'Welcome to Rezon',
-                style: textTheme.titleLarge?.copyWith(
-                  fontSize: 22,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              const SizedBox(height: 12),
-              Text(
-                'Browse and buy official Rezon merchandise brought to you by students.',
-                textAlign: TextAlign.center,
-                style: textTheme.bodyMedium,
-              ),
-              const SizedBox(height: 18),
-              // Appearance toggle
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  const Icon(Icons.dark_mode_outlined),
-                  const SizedBox(width: 8),
-                  Text('Dark mode', style: textTheme.bodyMedium),
-                  const SizedBox(width: 12),
-                  Switch.adaptive(
-                    value: themeMode == ThemeMode.dark,
-                    onChanged: (bool v) => onThemeModeChanged(
-                      v ? ThemeMode.dark : ThemeMode.light,
-                    ),
-                  ),
-                ],
-              ),
-              const Spacer(),
-              // Sign in with Google (non-functional placeholder)
-              SizedBox(
-                width: double.infinity,
-                child: OutlinedButton.icon(
-                  onPressed: onSignInWithGoogle,
-                  icon: Container(
-                    width: 20,
-                    height: 20,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: theme.colorScheme.surface, // adapt to theme
-                    ),
-                    child: Text(
-                      'G',
-                      style: TextStyle(
-                        color: theme.colorScheme.onSurface,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 12,
-                      ),
-                    ),
-                  ),
-                  label: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 14.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: <Widget>[
-                        Expanded(
-                          child: Text(
-                            'Sign in with Google',
-                            textAlign: TextAlign.center,
-                            style: textTheme.bodyMedium?.copyWith(fontSize: 16),
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  style: OutlinedButton.styleFrom(
-                    side: BorderSide(color: theme.dividerColor),
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 14.0,
-                      horizontal: 16.0,
-                    ),
-                    minimumSize: const Size.fromHeight(48),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    backgroundColor: theme.colorScheme.surface,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 12),
-              // Sign in as guest (navigates into app)
-              SizedBox(
-                width: double.infinity,
-                child: OutlinedButton.icon(
-                  onPressed: onSignInAsGuest,
-                  icon: Icon(
-                    Icons.person_outline,
-                    color: theme.iconTheme.color,
-                  ),
-                  label: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 14.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: <Widget>[
-                        Expanded(
-                          child: Text(
-                            'Sign in as guest',
-                            textAlign: TextAlign.center,
-                            style: textTheme.bodyMedium,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  style: OutlinedButton.styleFrom(
-                    side: BorderSide(color: theme.dividerColor),
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 14.0,
-                      horizontal: 16.0,
-                    ),
-                    minimumSize: const Size.fromHeight(48),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    backgroundColor: theme.colorScheme.surface,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 12),
-              SizedBox(
-                width: double.infinity,
-                child: OutlinedButton(
-                  onPressed: onRegister,
-                  style: OutlinedButton.styleFrom(
-                    side: BorderSide(color: theme.dividerColor),
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 14.0,
-                      horizontal: 16.0,
-                    ),
-                    minimumSize: const Size.fromHeight(48),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    backgroundColor: theme.colorScheme.surface,
-                  ),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            return SingleChildScrollView(
+              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+              child: ConstrainedBox(
+                constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                child: IntrinsicHeight(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 14.0),
-                    child: Text(
-                      'Register',
-                      style: textTheme.bodyMedium?.copyWith(fontSize: 15),
+                    padding: const EdgeInsets.symmetric(horizontal: 28),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        const SizedBox(height: 32),
+
+                        // LOGO (fixed sensible size)
+                        Center(
+                          child: Image.asset(
+                            theme.brightness == Brightness.dark
+                                ? 'assets/branding/agu_logo_dark.png'
+                                : 'assets/branding/agu_logo_light.png',
+                            height: 80,
+                            fit: BoxFit.contain,
+                          ),
+                        ),
+
+                        const SizedBox(height: 16),
+
+                        Text(
+                          'Welcome to REZON',
+                          textAlign: TextAlign.center,
+                          style: textTheme.titleLarge?.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+
+                        const SizedBox(height: 8),
+
+                        Text(
+                          'Modern streetwear for confident everyday wear',
+                          textAlign: TextAlign.center,
+                          style: textTheme.bodyMedium,
+                        ),
+
+                        const SizedBox(height: 16),
+
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(Icons.dark_mode_outlined, size: 18),
+                            const SizedBox(width: 6),
+                            const Text('Dark'),
+                            Switch.adaptive(
+                              value: widget.themeMode == ThemeMode.dark,
+                              onChanged: (v) => widget.onThemeModeChanged(
+                                v ? ThemeMode.dark : ThemeMode.light,
+                              ),
+                            ),
+                          ],
+                        ),
+
+                        const SizedBox(height: 20),
+
+                        // EMAIL
+                        TextField(
+                          controller: _emailController,
+                          decoration: const InputDecoration(labelText: 'Email'),
+                        ),
+
+                        const SizedBox(height: 12),
+
+                        // PASSWORD
+                        TextField(
+                          controller: _passwordController,
+                          decoration:
+                              const InputDecoration(labelText: 'Password'),
+                          obscureText: true,
+                        ),
+
+                        const SizedBox(height: 12),
+
+                        if (_errorMessage != null)
+                          Text(
+                            _errorMessage!,
+                            textAlign: TextAlign.center,
+                            style:
+                                TextStyle(color: theme.colorScheme.error),
+                          ),
+
+                        const SizedBox(height: 16),
+
+                        // SIGN IN
+                        OutlinedButton(
+                          onPressed: _loading
+                              ? null
+                              : () async {
+                                  setState(() {
+                                    _loading = true;
+                                    _errorMessage = null;
+                                  });
+                                  try {
+                                    await FirebaseAuth.instance
+                                        .signInWithEmailAndPassword(
+                                      email:
+                                          _emailController.text.trim(),
+                                      password:
+                                          _passwordController.text,
+                                    );
+                                  } on FirebaseAuthException catch (e) {
+                                    setState(() =>
+                                        _errorMessage = e.message);
+                                  } finally {
+                                    setState(() => _loading = false);
+                                  }
+                                },
+                          child: _loading
+                              ? const CircularProgressIndicator()
+                              : const Text('Sign in'),
+                        ),
+
+                        const SizedBox(height: 12),
+
+                        // REGISTER
+                        OutlinedButton(
+                          onPressed: _loading
+                              ? null
+                              : () async {
+                                  setState(() {
+                                    _loading = true;
+                                    _errorMessage = null;
+                                  });
+                                  try {
+                                    await FirebaseAuth.instance
+                                        .createUserWithEmailAndPassword(
+                                      email:
+                                          _emailController.text.trim(),
+                                      password:
+                                          _passwordController.text,
+                                    );
+                                  } on FirebaseAuthException catch (e) {
+                                    setState(() =>
+                                        _errorMessage = e.message);
+                                  } finally {
+                                    setState(() => _loading = false);
+                                  }
+                                },
+                          child: _loading
+                              ? const CircularProgressIndicator()
+                              : const Text('Register'),
+                        ),
+
+                        const SizedBox(height: 12),
+
+                        // GUEST
+                        OutlinedButton.icon(
+                          onPressed: widget.onSignInAsGuest,
+                          icon: const Icon(Icons.person_outline),
+                          label: const Text('Sign in as guest'),
+                        ),
+
+                        const Spacer(),
+                        const SizedBox(height: 24),
+                      ],
                     ),
                   ),
                 ),
               ),
-              const SizedBox(height: 28),
-            ],
-          ),
+            );
+          },
         ),
       ),
     );
