@@ -71,6 +71,7 @@ flutter:
     - assets/branding/agu_logo.png
     - assets/branding/agu_logo_light.png
     - assets/branding/agu_logo_dark.png
+    - assets/3D/
     - assets/data/recommended.json
     - assets/data/
     - assets/images/
