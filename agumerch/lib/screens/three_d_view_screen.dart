@@ -13,20 +13,31 @@ class ThreeDViewScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Premium dull grey wall color (fashion gallery style)
+    const Color wallGrey = Color(0xFFDADADA);
+
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: wallGrey,
       appBar: AppBar(
         title: Text(productName),
-        backgroundColor: Colors.black,
-        foregroundColor: Colors.white,
+        backgroundColor: wallGrey,
+        foregroundColor: Colors.black,
+        elevation: 0,
       ),
-      body: ModelViewer(
-        src: modelUrl,
-        alt: 'A 3D model of $productName',
-        ar: true,
-        autoRotate: true,
-        cameraControls: true,
-        backgroundColor: Colors.black,
+      body: Center(
+        child: ModelViewer(
+          src: modelUrl,
+          alt: 'A 3D model of $productName',
+          ar: true,
+          autoRotate: true,
+          cameraControls: true,
+
+          backgroundColor: wallGrey,
+          environmentImage: 'neutral',
+          exposure: 1.1,          // natural brightness
+          shadowIntensity: 0.75,  // soft fashion shadows
+          shadowSoftness: 0.9,
+        ),
       ),
     );
   }

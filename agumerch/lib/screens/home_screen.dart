@@ -40,37 +40,50 @@ class HomeScreen extends StatelessWidget {
               onCategorySelected: state.setCategory,
             ),
             const SizedBox(height: 20),
-            SectionHeader(title: 'Featured Drops', actionLabel: 'View catalog', onTap: onSeeAll),
+            SectionHeader(
+              title: 'Featured Drops',
+              actionLabel: 'View catalog',
+              onTap: onSeeAll,
+            ),
             const SizedBox(height: 12),
             SizedBox(
               height: 320,
-              child: Builder(builder: (BuildContext ctx) {
-                // Reuse the same filtering logic from AppState so featured
-                // results respect the active search query and category.
-                final List<Product> featured = state.filteredProducts.take(3).toList(growable: false);
-                return ListView.separated(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: featured.length,
-                  separatorBuilder: (_, __) => const SizedBox(width: 16),
-                  itemBuilder: (BuildContext context, int index) {
-                    final Product product = featured[index];
-                    return SizedBox(
-                      width: 200,
-                      child: ProductCard(
-                        product: product,
-                        isFavorite: state.isFavorite(product),
-                        onFavoriteToggle: () => state.toggleFavorite(product),
-                        onTap: () => onProductSelected(product),
-                      ),
-                    );
-                  },
-                );
-              }),
+              child: Builder(
+                builder: (BuildContext ctx) {
+                  final List<Product> featured =
+                      state.filteredProducts.take(3).toList(growable: false);
+                  return ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: featured.length,
+                    separatorBuilder: (_, __) => const SizedBox(width: 16),
+                    itemBuilder: (BuildContext context, int index) {
+                      final Product product = featured[index];
+                      return SizedBox(
+                        width: 200,
+                        child: ProductCard(
+                          product: product,
+                          isFavorite: state.isFavorite(product),
+                          onFavoriteToggle: () =>
+                              state.toggleFavorite(product),
+                          onTap: () => onProductSelected(product),
+                        ),
+                      );
+                    },
+                  );
+                },
+              ),
             ),
             const SizedBox(height: 24),
             SectionHeader(title: 'Popular Categories'),
             const SizedBox(height: 12),
-            _CategoryTiles(categories: state.categories.where((String c) => c != 'All').toList())
+            _CategoryTiles(
+              categories:
+                  state.categories.where((String c) => c != 'All').toList(),
+              onCategoryTap: (String category) {
+                state.setCategory(category);
+                onSeeAll();
+              },
+            ),
           ],
         ),
       ),
@@ -106,7 +119,9 @@ class _HeroBanner extends StatelessWidget {
             style: Theme.of(context)
                 .textTheme
                 .headlineMedium
-                ?.copyWith(color: Theme.of(context).colorScheme.onPrimary),
+                ?.copyWith(
+                    color:
+                        Theme.of(context).colorScheme.onPrimary),
           ),
           const SizedBox(height: 8),
           Text(
@@ -114,15 +129,23 @@ class _HeroBanner extends StatelessWidget {
             style: Theme.of(context)
                 .textTheme
                 .bodyMedium
-                ?.copyWith(color: Theme.of(context).colorScheme.onPrimary.withValues(alpha: 0.85)),
+                ?.copyWith(
+                    color: Theme.of(context)
+                        .colorScheme
+                        .onPrimary
+                        .withValues(alpha: 0.85)),
           ),
           const SizedBox(height: 16),
           FilledButton.tonal(
             onPressed: onSeeAll,
-            style: FilledButton.styleFrom(backgroundColor: Theme.of(context).colorScheme.onPrimary),
+            style: FilledButton.styleFrom(
+                backgroundColor:
+                    Theme.of(context).colorScheme.onPrimary),
             child: Text(
               'Browse collections',
-              style: TextStyle(color: Theme.of(context).colorScheme.primary),
+              style: TextStyle(
+                  color:
+                      Theme.of(context).colorScheme.primary),
             ),
           ),
         ],
@@ -132,7 +155,10 @@ class _HeroBanner extends StatelessWidget {
 }
 
 class _SearchField extends StatelessWidget {
-  const _SearchField({required this.initialValue, required this.onChanged});
+  const _SearchField({
+    required this.initialValue,
+    required this.onChanged,
+  });
 
   final String initialValue;
   final ValueChanged<String> onChanged;
@@ -146,7 +172,10 @@ class _SearchField extends StatelessWidget {
         prefixIcon: const Icon(Icons.search),
         hintText: 'Search Rezon merchandise',
         filled: true,
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(16), borderSide: BorderSide.none),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(16),
+          borderSide: BorderSide.none,
+        ),
       ),
     );
   }
@@ -186,9 +215,13 @@ class _CategoryFilter extends StatelessWidget {
 }
 
 class _CategoryTiles extends StatelessWidget {
-  const _CategoryTiles({required this.categories});
+  const _CategoryTiles({
+    required this.categories,
+    required this.onCategoryTap,
+  });
 
   final List<String> categories;
+  final ValueChanged<String> onCategoryTap;
 
   @override
   Widget build(BuildContext context) {
@@ -204,32 +237,39 @@ class _CategoryTiles extends StatelessWidget {
       itemCount: categories.length,
       itemBuilder: (BuildContext context, int index) {
         final String category = categories[index];
-        return Container(
-          decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.surface,
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(color: Theme.of(context).colorScheme.outlineVariant),
-          ),
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Icon(
-                _iconForCategory(category),
-                size: 28,
-                color: Theme.of(context).colorScheme.primary,
+        return InkWell(
+          borderRadius: BorderRadius.circular(20),
+          onTap: () => onCategoryTap(category),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.surface,
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(
+                color:
+                    Theme.of(context).colorScheme.outlineVariant,
               ),
-              const Spacer(),
-              Text(
-                category,
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                '12 curated picks',
-                style: Theme.of(context).textTheme.bodySmall,
-              ),
-            ],
+            ),
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Icon(
+                  _iconForCategory(category),
+                  size: 28,
+                  color:
+                      Theme.of(context).colorScheme.primary,
+                ),
+                const Spacer(),
+                Text(
+                  category,
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleMedium
+                      ?.copyWith(
+                          fontWeight: FontWeight.w600),
+                ),
+              ],
+            ),
           ),
         );
       },

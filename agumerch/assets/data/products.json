@@ -3,37 +3,37 @@
         "name": "AGU Classic Hoodie",
         "photoUrl": "assets/images/rezon_black_hoodie.jpeg",
         "threeDModelUrl": "assets/3D/Rezon-hoodie-black.glb",
-        "price": 48.0
+        "price": 799
     },
     {
         "name": "Rezon Hoodie (Black)",
         "photoUrl": "assets/images/rezon_black_hoodie.jpeg",
         "threeDModelUrl": "assets/3D/Rezon-hoodie-black.glb",
-        "price": 48.0
+        "price": 799
     },
     {
         "name": "Rezon Hoodie (White)",
         "photoUrl": "assets/images/rezon_white-hoodie.jpeg",
         "threeDModelUrl": "assets/3D/Rezon-hoodie-white.glb",
-        "price": 48.0
+        "price": 799
     },
     {
         "name": "Statement Tee",
         "photoUrl": "assets/images/rezon_white_shirt.jpeg",
         "threeDModelUrl": "assets/3D/Rezon-shirt-white.glb",
-        "price": 24.0
+        "price": 499
     },
     {
         "name": "Rezon Tee (Black)",
         "photoUrl": "assets/images/rezon_black_shirt.jpeg",
         "threeDModelUrl": "assets/3D/Rezon-shirt-black.glb",
-        "price": 24.0
+        "price": 499
     },
     {
         "name": "Rezon Tee (White)",
         "photoUrl": "assets/images/rezon_white_shirt.jpeg",
         "threeDModelUrl": "assets/3D/Rezon-shirt-white.glb",
-        "price": 24.0
+        "price": 499
     },
     {
         "name": "Hydro Sport Bottle",
@@ -43,18 +43,18 @@
     {
         "name": "Retro Baseball Cap",
         "photoUrl": "assets/images/caps.jpeg",
-        "price": 28.0
+        "price": 199
     },
     {
         "name": "Grid Notebook Set",
         "photoUrl": "assets/images/rezon_journals.jpeg",
-        "price": 14.0
+        "price": 149
     },
     {
         "id": "espresso-agu-set",
-        "name": "AGU Espresso Set",
+        "name": "Coffee Mug",
         "photoUrl": "assets/images/coffee_cups.jpeg",
-        "price": 475,
+        "price": 399,
         "category": "Home",
         "description": "Elegant white ceramic espresso cups with matching saucers, featuring the signature AGU logo in red.",
         "colors": ["White"],

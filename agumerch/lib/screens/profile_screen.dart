@@ -96,7 +96,7 @@ class ProfileScreen extends StatelessWidget {
             items: <_SettingItem>[
               _SettingItem(
                 icon: Icons.location_on_outlined,
-                title: 'Campus Location',
+                title: 'Location',
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute<void>(
                     builder: (BuildContext context) => const CampusMapScreen(

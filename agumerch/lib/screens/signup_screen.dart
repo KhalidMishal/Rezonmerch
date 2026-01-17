@@ -79,7 +79,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               const SizedBox(height: 24),
               DropdownButtonFormField<String>(
                 initialValue: _selectedGender,
-                items: const <String>['Female', 'Male', 'Non-binary', 'Prefer not to say']
+                items: const <String>['Female', 'Male', 'Non-binary','Prefer not to say']
                     .map(
                       (String option) => DropdownMenuItem<String>(
                         value: option,

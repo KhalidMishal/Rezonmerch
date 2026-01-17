@@ -1,9 +1,9 @@
 [
   {
-    "name": "Rezon Hoodie (Black)",
+    "name": "Rezon Hoodie - Black",
     "photoUrl": "assets/images/rezon_black_hoodie.jpeg",
     "threeDModelUrl": "assets/3D/Rezon-hoodie-black.glb",
-    "price": 48.0,
+    "price": 899,
     "category": "Apparel",
     "description": "Black Rezon hoodie with interactive 3D view.",
     "colors": ["Black"],
@@ -12,10 +12,10 @@
     "badges": ["3D"]
   },
   {
-    "name": "Rezon Hoodie (White)",
+    "name": "Rezon Hoodie - White",
     "photoUrl": "assets/images/rezon_white-hoodie.jpeg",
     "threeDModelUrl": "assets/3D/Rezon-hoodie-white.glb",
-    "price": 48.0,
+    "price": 899,
     "category": "Apparel",
     "description": "White Rezon hoodie with interactive 3D view.",
     "colors": ["White"],
@@ -24,10 +24,10 @@
     "badges": ["3D"]
   },
   {
-    "name": "Rezon Tee (Black)",
+    "name": "Rezon Tee - Black",
     "photoUrl": "assets/images/rezon_black_shirt.jpeg",
     "threeDModelUrl": "assets/3D/Rezon-shirt-black.glb",
-    "price": 24.0,
+    "price": 499,
     "category": "Apparel",
     "description": "Black Rezon tee with interactive 3D view.",
     "colors": ["Black"],
@@ -36,10 +36,10 @@
     "badges": ["3D"]
   },
   {
-    "name": "Rezon Tee (White)",
+    "name": "Rezon Tee - White",
     "photoUrl": "assets/images/rezon_white_shirt.jpeg",
     "threeDModelUrl": "assets/3D/Rezon-shirt-white.glb",
-    "price": 24.0,
+    "price": 499,
     "category": "Apparel",
     "description": "White Rezon tee with interactive 3D view.",
     "colors": ["White"],
@@ -48,11 +48,11 @@
     "badges": ["3D"]
   },
   {
-    "name": "AGU Espresso Set",
+    "name": "Coffee Mug",
     "photoUrl": "assets/images/coffee_cups.jpeg",
-    "price": 475,
+    "price": 399,
     "category": "Home",
-    "description": "Elegant white ceramic espresso cups with matching saucers, featuring the signature AGU logo in red.",
+    "description": "Elegant white and black printed coffee mugs",
     "colors": ["White"],
     "sizes": ["Standard"],
     "inventory": 40,
@@ -61,10 +61,10 @@
   {
     "name": "Varsity Cap Collection",
     "photoUrl": "assets/images/caps.jpeg",
-    "price": 290,
+    "price": 249,
     "category": "Apparel",
-    "description": "Classic baseball caps with embroidered AGU logo. Adjustable strap for perfect fit.",
-    "colors": ["Black", "Red", "White"],
+    "description": "Classic P-caps in multiple colors to match your style.",
+    "colors": ["Black", "Blue", "White"],
     "sizes": ["One Size"],
     "inventory": 100,
     "badges": ["Bestseller"]
@@ -72,10 +72,10 @@
   {
     "name": "Thermal Steel Bottle",
     "photoUrl": "assets/images/metal_bottles.jpeg",
-    "price": 360,
+    "price": 385,
     "category": "Accessories",
     "description": "Double-walled insulated stainless steel bottle to keep your drinks hot or cold for hours.",
-    "colors": ["Metallic Red", "Silver", "Matte Black"],
+    "colors": ["Metallic blue", "Silver", "Matte Black"],
     "sizes": ["500ml"],
     "inventory": 85,
     "badges": ["Eco-Friendly"]
@@ -83,7 +83,7 @@
   {
     "name": "Soft-Touch Glass Bottle",
     "photoUrl": "assets/images/glass_bottles.jpeg",
-    "price": 310,
+    "price": 399,
     "category": "Accessories",
     "description": "Glass water bottle with a protective soft-touch sleeve. Stylish and sustainable.",
     "colors": ["Pastel Pink", "Mint Green", "White", "Sky Blue"],
